@@ -733,9 +733,17 @@ if (!indianMobileRegex.test(formData.phone)) {
           <Button
             type="submit"
             loading={loading}
+            // disabled={
+            //   loading || !formData.name || !formData.age || !formData.gender
+            // }
             disabled={
-              loading || !formData.name || !formData.age || !formData.gender
-            }
+            loading ||
+            !formData.name ||
+            !formData.age ||
+            !formData.gender ||
+            !/^[6-9]\d{9}$/.test(formData.phone)
+          }
+
             className="px-12 py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold text-lg hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl rounded-xl"
           >
             {loading ? (
