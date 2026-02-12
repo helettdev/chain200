@@ -477,7 +477,7 @@ if (formData.address && formData.address.length < 5) {
                 placeholder="Enter your full name"
                 className="focus:ring-emerald-500 focus:border-emerald-500"
               />
-              <Input
+              {/* <Input
                 label="Age"
                 name="age"
                 type="number"
@@ -486,7 +486,29 @@ if (formData.address && formData.address.length < 5) {
                 required
                 placeholder="Enter your age"
                 className="focus:ring-emerald-500 focus:border-emerald-500"
-              />
+              /> */}
+              <Input
+  label="Age"
+  name="age"
+  type="number"
+  min="1"
+  max="120"
+  value={formData.age}
+  onChange={(e) => {
+    const value = e.target.value;
+
+    // Allow only positive numbers up to 120
+    if (value === "" || (/^\d+$/.test(value) && Number(value) <= 120)) {
+      setFormData((prev) => ({
+        ...prev,
+        age: value,
+      }));
+    }
+  }}
+  required
+/>
+
+              
               <Select
                 label="Gender"
                 name="gender"
@@ -547,14 +569,35 @@ if (formData.address && formData.address.length < 5) {
                 placeholder="123 Patient St ,Pune 12345"
                 className="md:col-span-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
-              <Input
+              {/* <Input
                 label="Emergency Contact"
                 name="emergencyContact"
                 value={formData.emergencyContact}
                 onChange={handleInputChange}
                 placeholder="Emergency contact number"
                 className="focus:ring-emerald-500 focus:border-emerald-500"
-              />
+              /> */}
+<Input
+  label="Emergency Contact"
+  name="emergencyContact"
+  type="tel"
+  inputMode="numeric"
+  maxLength={10}
+  value={formData.emergencyContact}
+  onChange={(e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setFormData((prev) => ({
+        ...prev,
+        emergencyContact: value,
+      }));
+    }
+  }}
+  placeholder="Enter 10-digit emergency number"
+/>
+
+
+
               <Select
                 label="Blood Type"
                 name="bloodType"
