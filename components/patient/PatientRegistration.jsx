@@ -170,7 +170,7 @@ if (!/^[A-Za-z\s]{3,}$/.test(formData.name)) {
 
 // 🔹 Age validation
 if (formData.age < 1 || formData.age > 120) {
-  toast.error("Enter valid age between 1 and 120");
+  toast.error("Enter your age");
   return;
 }
 
