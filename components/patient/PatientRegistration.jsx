@@ -160,13 +160,51 @@ const PatientRegistration = () => {
       return;
     }
 
-    // Validate Indian mobile number
-const indianMobileRegex = /^[6-9]\d{9}$/;
 
+
+// 🔹 Name validation
+if (!/^[A-Za-z\s]{3,}$/.test(formData.name)) {
+  toast.error("Enter valid full name (only letters, min 3 characters)");
+  return;
+}
+
+// 🔹 Age validation
+if (formData.age < 1 || formData.age > 120) {
+  toast.error("Enter valid age between 1 and 120");
+  return;
+}
+
+// 🔹 Phone validation
+const indianMobileRegex = /^[6-9]\d{9}$/;
 if (!indianMobileRegex.test(formData.phone)) {
   toast.error("Enter valid 10-digit Indian mobile number");
   return;
 }
+
+// 🔹 Emergency contact validation
+if (
+  formData.emergencyContact &&
+  !indianMobileRegex.test(formData.emergencyContact)
+) {
+  toast.error("Enter valid emergency contact number");
+  return;
+}
+
+// 🔹 Email validation
+if (
+  formData.email &&
+  !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
+) {
+  toast.error("Enter valid email address");
+  return;
+}
+
+// 🔹 Address validation
+if (formData.address && formData.address.length < 5) {
+  toast.error("Enter valid address");
+  return;
+}
+
 
 
     try {
@@ -736,6 +774,7 @@ if (!indianMobileRegex.test(formData.phone)) {
             // disabled={
             //   loading || !formData.name || !formData.age || !formData.gender
             // }
+              
             disabled={
             loading ||
             !formData.name ||
