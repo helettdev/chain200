@@ -6,7 +6,6 @@ import {
   FiSearch,
   FiFilter,
   FiMapPin,
-  FaRupeeSign,
   FiPackage,
   FiPercent,
   FiShoppingCart,
@@ -49,6 +48,7 @@ import {
   FaAllergies,
   FaNotesMedical,
   FaHeartbeat,
+  FaRupeeSign, 
 } from "react-icons/fa";
 import { Card, Button, Input, Select, Badge, Modal } from "../common";
 import LoadingSpinner from "../common/LoadingSpinner";

@@ -160,6 +160,15 @@ const PatientRegistration = () => {
       return;
     }
 
+    // Validate Indian mobile number
+const indianMobileRegex = /^[6-9]\d{9}$/;
+
+if (!indianMobileRegex.test(formData.phone)) {
+  toast.error("Enter valid 10-digit Indian mobile number");
+  return;
+}
+
+
     try {
       setLoading(true);
 
@@ -453,14 +462,36 @@ const PatientRegistration = () => {
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </Select>
-              <Input
+              {/* <Input
                 label="Phone Number"
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="+91"
                 className="focus:ring-emerald-500 focus:border-emerald-500"
-              />
+              /> */}
+
+
+              <Input
+  label="Phone Number"
+  name="phone"
+  type="tel"
+  inputMode="numeric"
+  maxLength={10}
+  value={formData.phone}
+  onChange={(e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setFormData((prev) => ({
+        ...prev,
+        phone: value,
+      }));
+    }
+  }}
+  placeholder="Enter 10-digit mobile number"
+  className="focus:ring-emerald-500 focus:border-emerald-500"
+/>
+
               <Input
                 label="Email Address"
                 name="email"
